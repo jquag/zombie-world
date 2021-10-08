@@ -67,7 +67,7 @@ func _on_Host_pressed():
 	
 func _on_Join_pressed():
 	var peer = NetworkedMultiplayerENet.new()
-	peer.create_client('192.168.1.35', 9000)
+	peer.create_client(host, 9000)
 	get_tree().network_peer = peer
 	$Main/Buttons/Host.disabled = true
 	$Main/Buttons/Join.disabled = true
