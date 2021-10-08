@@ -95,21 +95,22 @@ remote func pre_configure_game():
 	var my_player = preload("res://zombie/zombie.tscn").instance()
 	my_player.set_name(str(selfPeerID))
 	my_player.set_network_master(selfPeerID) # Will be explained later
+	if !get_tree().is_network_server():
+		my_player.position.x = my_player.position.x + 300 
 	get_node("/root/World/Players").add_child(my_player)
 
 	# Load other players
+	var offset = 0
 	for p in player_info:
 		var player = preload("res://zombie/zombie.tscn").instance()
 		player.set_name(str(p))
 		player.set_network_master(p) # Will be explained later
+		if get_tree().is_network_server():
+			player.position.x = player.position.x + 300 
+
 		get_node("/root/World/Players").add_child(player)
 
 	
-	if get_tree().is_network_server():
-		var offset = 0
-		for p in get_node("/root/World/Players").get_children():
-			p.position.x = p.position.x + offset
-			offset = offset +  300
 	# Tell server (remember, server is always ID=1) that this peer is done pre-configuring.
 	# The server can call get_tree().get_rpc_sender_id() to find out who said they were done.
 	# rpc_id(1, "done_preconfiguring")
