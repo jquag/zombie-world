@@ -3,18 +3,17 @@ extends KinematicBody2D
 export (int) var speed = 200
 export (int) var earshot = 400
 
-var puppet_pos = Vector2()
-var puppet_motion = Vector2()
+puppet var puppet_pos = Vector2()
+puppet var puppet_motion = Vector2()
 
 func _ready():
     puppet_pos = position	
 
 
 func _physics_process(_delta):
-    var velocity: Vector2
+    var velocity = Vector2()
 
     if is_network_master():
-
         if Input.is_action_pressed('right'):
             velocity.x += 1
         if Input.is_action_pressed('left'):
@@ -30,7 +29,6 @@ func _physics_process(_delta):
         rset("puppet_pos", position)
 
     else:
-        pass
         position = puppet_pos
         velocity = puppet_motion
 

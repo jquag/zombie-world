@@ -95,14 +95,14 @@ remote func pre_configure_game():
 	var my_player = preload("res://zombie/zombie.tscn").instance()
 	my_player.set_name(str(selfPeerID))
 	my_player.set_network_master(selfPeerID) # Will be explained later
-	get_node("/root/World/Ground").add_child(my_player)
+	get_node("/root/World/Players").add_child(my_player)
 
 	# Load other players
 	for p in player_info:
 		var player = preload("res://zombie/zombie.tscn").instance()
 		player.set_name(str(p))
 		player.set_network_master(p) # Will be explained later
-		get_node("/root/World/Ground").add_child(player)
+		get_node("/root/World/Players").add_child(player)
 		player.position.x = player.position.x + 100
 
 	# Tell server (remember, server is always ID=1) that this peer is done pre-configuring.
