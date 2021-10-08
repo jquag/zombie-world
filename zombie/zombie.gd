@@ -8,6 +8,8 @@ puppet var puppet_motion = Vector2()
 
 func _ready():
     puppet_pos = position	
+    if is_network_master():
+        $Camera2D.current = true
 
 
 func _physics_process(_delta):
