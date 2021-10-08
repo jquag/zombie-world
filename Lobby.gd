@@ -102,7 +102,7 @@ remote func pre_configure_game():
 		var player = preload("res://zombie/zombie.tscn").instance()
 		player.set_name(str(p))
 		player.set_network_master(p) # Will be explained later
-		player.position.x = player.position.x + 100
+		player.position.x = player.position.x + 300
 		get_node("/root/World/Players").add_child(player)
 
 	# Tell server (remember, server is always ID=1) that this peer is done pre-configuring.
