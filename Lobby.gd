@@ -80,18 +80,16 @@ func _log(msg):
 
 func _on_Start_pressed():
 	print('start game')
+	pre_configure_game()
 	rpc('pre_configure_game')
 
 
 remote func pre_configure_game():
-	print('being preconfigured')
+	var selfPeerID = get_tree().get_network_unique_id()
 
-
-	# var selfPeerID = get_tree().get_network_unique_id()
-
-	# # Load world
-	# var world = load(which_level).instance()
-	# get_node("/root").add_child(world)
+	# Load world
+	var world = load("res://World.tscn").instance()
+	get_node("/root").add_child(world)
 
 	# # Load my player
 	# var my_player = preload("res://player.tscn").instance()
