@@ -30,6 +30,7 @@ func _physics_process(_delta):
         rset("puppet_pos", position)
 
     else:
+        pass
         position = puppet_pos
         velocity = puppet_motion
 
@@ -37,10 +38,9 @@ func _physics_process(_delta):
     if velocity.length() > 0:
         $AnimatedSprite.flip_h = velocity.x < 0
         $AnimatedSprite.play('walk-x')
-        velocity = move_and_slide(velocity)
     else:
         $AnimatedSprite.stop()
 
-    var _ignored = move_and_slide(velocity * speed)
+    velocity = move_and_slide(velocity)
     if not is_network_master():
         puppet_pos = position # To avoid jitter
