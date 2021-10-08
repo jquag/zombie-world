@@ -5,7 +5,7 @@ var hosting = false
 func _ready():
 	var _ignore = $Main/Buttons/Host.connect('pressed', self, '_on_Host_pressed')
 	_ignore = $Main/Buttons/Join.connect('pressed', self, '_on_Join_pressed')
-	_ignore = $Main/Buttons/Start.connect('pressed', self, '_on_Start_pressed')
+	_ignore = $Main/Buttons/start.connect('pressed', self, '_on_Start_pressed')
 	_ignore = get_tree().connect("network_peer_connected", self, "_player_connected")
 	_ignore = get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
 	_ignore = get_tree().connect("connected_to_server", self, "_connected_ok")
@@ -66,7 +66,7 @@ func _on_Host_pressed():
 	
 func _on_Join_pressed():
 	var peer = NetworkedMultiplayerENet.new()
-	peer.create_client('127.0.0.1', 9000)
+	peer.create_client('192.168.1.35', 9000)
 	get_tree().network_peer = peer
 	$Main/Buttons/Host.disabled = true
 	$Main/Buttons/Join.disabled = true
@@ -78,4 +78,4 @@ func _log(msg):
 
 
 func _on_Start_pressed():
-	
+	print('start game')
