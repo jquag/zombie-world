@@ -1,6 +1,7 @@
 extends Node2D
 
 var hosting = false
+export (String) var host = '192.168.1.35'
 
 func _ready():
 	var _ignore = $Main/Buttons/Host.connect('pressed', self, '_on_Host_pressed')
@@ -86,25 +87,25 @@ remote func pre_configure_game():
 	print('being preconfigured')
 
 
-    # var selfPeerID = get_tree().get_network_unique_id()
+	# var selfPeerID = get_tree().get_network_unique_id()
 
-    # # Load world
-    # var world = load(which_level).instance()
-    # get_node("/root").add_child(world)
+	# # Load world
+	# var world = load(which_level).instance()
+	# get_node("/root").add_child(world)
 
-    # # Load my player
-    # var my_player = preload("res://player.tscn").instance()
-    # my_player.set_name(str(selfPeerID))
-    # my_player.set_network_master(selfPeerID) # Will be explained later
-    # get_node("/root/world/players").add_child(my_player)
+	# # Load my player
+	# var my_player = preload("res://player.tscn").instance()
+	# my_player.set_name(str(selfPeerID))
+	# my_player.set_network_master(selfPeerID) # Will be explained later
+	# get_node("/root/world/players").add_child(my_player)
 
-    # # Load other players
-    # for p in player_info:
-    #     var player = preload("res://player.tscn").instance()
-    #     player.set_name(str(p))
-    #     player.set_network_master(p) # Will be explained later
-    #     get_node("/root/world/players").add_child(player)
+	# # Load other players
+	# for p in player_info:
+	#     var player = preload("res://player.tscn").instance()
+	#     player.set_name(str(p))
+	#     player.set_network_master(p) # Will be explained later
+	#     get_node("/root/world/players").add_child(player)
 
-    # # Tell server (remember, server is always ID=1) that this peer is done pre-configuring.
-    # # The server can call get_tree().get_rpc_sender_id() to find out who said they were done.
-    # rpc_id(1, "done_preconfiguring")
+	# # Tell server (remember, server is always ID=1) that this peer is done pre-configuring.
+	# # The server can call get_tree().get_rpc_sender_id() to find out who said they were done.
+	# rpc_id(1, "done_preconfiguring")
